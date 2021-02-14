@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import LoginForm from './LoginForm';
+import Signup from './Signup';
 
 class Login extends Component {
     
@@ -16,11 +18,13 @@ class Login extends Component {
                     <div className="card-body">
                         <div className="row">
                             <div className="col-sm-6">
-                                <h3 style={{textAlign:"center", fontWeight:"bolder"}}>Login User</h3>
+                                <h3>Login User</h3>
+                                <LoginForm />
                             </div>
 
                             <div className="col-sm-6">
-                                <h4 style={{textAlign:"center", fontWeight:"bolder"}}>Signup User</h4>
+                                <h4>Signup User</h4>
+                                <Signup />
                             </div>
                         </div>
                     </div>

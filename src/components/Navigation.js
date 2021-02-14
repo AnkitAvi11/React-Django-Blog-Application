@@ -11,15 +11,15 @@ class Navigation extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{marginBottom : "20px"}}>
         <div className="container">
-        <NavLink className="navbar-brand" to="/"><b>Communion</b></NavLink>
+        <NavLink className="navbar-brand" to="/" exact><b>Communion</b></NavLink>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarColor03">
             <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-                <NavLink className="nav-link" to="/">Home
+            <li className="nav-item">
+                <NavLink className="nav-link" to="/" exact={true}>Home
                 <span className="sr-only">(current)</span>
                 </NavLink>
             </li>

@@ -11,9 +11,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Navigation loggedin={this.props.loggedin} />
-        <Switch>  
-
+        <Switch>
           {/* Authentication routes */}
+          <Route path="/" exact={true} component={()=><p>Home page</p>} />
           <Route path="/auth" exact={true} component={Login} />
 
           {/* Private routes that require users to be authenticated */}
