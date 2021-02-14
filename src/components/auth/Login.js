@@ -11,7 +11,21 @@ class Login extends Component {
 
     render () {
         return (
-            <h1>Login page</h1>
+            <div className="container">
+                <div className="card">
+                    <div className="card-body">
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <h3 style={{textAlign:"center", fontWeight:"bolder"}}>Login User</h3>
+                            </div>
+
+                            <div className="col-sm-6">
+                                <h4 style={{textAlign:"center", fontWeight:"bolder"}}>Signup User</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
 

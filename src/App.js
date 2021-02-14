@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
+import Navigation from './components/Navigation';
 import PrivateRoute from './components/PrivateRoute';
 
 class App extends Component {
   render () {
     return (
       <BrowserRouter>
-        <p>Hello World!</p>
+        <Navigation loggedin={this.props.loggedin} />
         <Switch>  
-          
+
           {/* Authentication routes */}
-          <Route path="/login" exact={true} component={Login} />
-          <Route path="/signup" exact={true} component={Signup} />
+          <Route path="/auth" exact={true} component={Login} />
 
           {/* Private routes that require users to be authenticated */}
           <PrivateRoute path="/dashboard" loggedin={false} component={Signup} />
@@ -23,4 +24,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = () => {
+  return {
+    loggedin : localStorage.getItem('token') ? true : false
+  }
+}
+
+export default connect(mapStateToProps,{})(App);
