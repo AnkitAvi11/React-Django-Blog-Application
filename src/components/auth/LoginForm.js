@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 //  login form 
 class LoginForm extends Component {
 
+    //  constructor of the class
     constructor (props) {
         super(props)
         this.state = {
@@ -13,6 +14,7 @@ class LoginForm extends Component {
         }
     }
 
+    //  function to handle the form submission
     formSubmitEvent = (e) => {
         e.preventDefault();
         if(this.state.username === '' || this.state.password === '') {
@@ -21,12 +23,14 @@ class LoginForm extends Component {
         }
     }
 
+    //  function to handle the input change
     onFieldsChange = (e) => {
         this.setState({
             [e.target.name] : e.target.value
         });
     }
 
+    //  render function
     render () {
         return (
             <div className="card" style={{borderRadius:"0"}}>
