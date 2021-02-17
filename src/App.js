@@ -24,6 +24,7 @@ class App extends Component {
   }
 }
 
+//  to maintain the authentication state of the application
 const mapStateToProps = () => {
   return {
     loggedin : localStorage.getItem('token') ? true : false

@@ -6,8 +6,8 @@ import {createStore, applyMiddleware} from 'redux';
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
 
-import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
+import { transitions, positions, Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 import reducers from './reducers';
  
 // optional configuration

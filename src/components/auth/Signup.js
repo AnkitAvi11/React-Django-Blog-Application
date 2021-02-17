@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 class Signup extends Component {
     
+    //  constructor of the class
     constructor(props) {
         super(props);
         this.state = {
@@ -14,6 +15,7 @@ class Signup extends Component {
         }
     }
 
+    //  function that kicks in when the form is submitted
     formSubmit = (e) => {
         e.preventDefault();
         if(this.state.fname==='' || this.state.username==='' || this.state.password === '' || this.state.email === '') {
@@ -31,12 +33,35 @@ class Signup extends Component {
         }
     }
 
+    //  updating state according to the input fields
     onFieldsChange = (e) => {
         this.setState({
             [e.target.name] : e.target.value
         })
     }
 
+    //  function to check for redundancy of the username
+    onUsernameBlur = () => {
+        //  checking for redundant username
+
+    }
+
+    //  on mount
+    componentDidMount = () => {
+
+    }
+
+    //  should the component update
+    shouldComponentUpdate = (prevState, state) => {
+
+    }
+
+    //  when the component has updated according to its state
+    componentDidUpdate = () => {
+
+    }
+
+    //  render method
     render () {
         return (
             <div className="card" style={{borderRadius:"0"}}>
