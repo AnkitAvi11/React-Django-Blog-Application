@@ -10,7 +10,7 @@ class App extends Component {
   render () {
     return (
       <BrowserRouter>
-        <Navigation loggedin={this.props.loggedin} />
+        <Navigation loggedin={this.props.loggedin} user={this.props.user} />
         <Switch>
           {/* Authentication routes */}
           <Route path="/" exact={true} component={()=><p>Home page</p>} />
@@ -27,7 +27,8 @@ class App extends Component {
 //  to maintain the authentication state of the application
 const mapStateToProps = () => {
   return {
-    loggedin : localStorage.getItem('token') ? true : false
+    loggedin : localStorage.getItem('token') != null ? true : false,
+    user : JSON.parse(localStorage.getItem('user'))
   }
 }
 

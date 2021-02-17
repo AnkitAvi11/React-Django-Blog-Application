@@ -1,5 +1,3 @@
-import { act } from "react-dom/test-utils"
-
 let state = {
     error : null,
     loading : false,
@@ -34,4 +32,4 @@ const loginReducer = (initial_state = state, action) => {
     }
 }
 
-export {loginReducer}
+export { loginReducer }

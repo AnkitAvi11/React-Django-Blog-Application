@@ -40,27 +40,6 @@ class Signup extends Component {
         })
     }
 
-    //  function to check for redundancy of the username
-    onUsernameBlur = () => {
-        //  checking for redundant username
-
-    }
-
-    //  on mount
-    componentDidMount = () => {
-
-    }
-
-    //  should the component update
-    shouldComponentUpdate = (prevState, state) => {
-
-    }
-
-    //  when the component has updated according to its state
-    componentDidUpdate = () => {
-
-    }
-
     //  render method
     render () {
         return (

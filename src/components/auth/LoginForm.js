@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withAlert } from 'react-alert';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { loginUser } from "../../actions/auth_actions";
 
 //  login form 
 class LoginForm extends Component {
@@ -21,6 +23,15 @@ class LoginForm extends Component {
             this.props.alert.show('Please fill up the form properly.', {type:'error'})
             return;
         }
+        this.props.loginUser(this.state.username, this.state.password)
+    }
+
+    componentDidUpdate = () => {
+        if (this.props.auth.error) {
+            this.props.alert.show(this.props.auth.error, {type : 'error'})
+        }else if(this.props.auth.user!==null){
+            this.props.alert.show('User successfully logged in.', {type : 'success'})
+        }
     }
 
     //  function to handle the input change
@@ -32,6 +43,11 @@ class LoginForm extends Component {
 
     //  render function
     render () {
+        
+        if(this.props.auth.user!=null) {
+            return <Redirect to="/" />
+        }
+
         return (
             <div className="card" style={{borderRadius:"0"}}>
                 <div className="card-body" style={{borderRadius:"0"}}>
@@ -45,7 +61,7 @@ class LoginForm extends Component {
                             <input type="password" name="password" id="password" className="form-control" onChange={this.onFieldsChange} />
                         </div>
                         <div className="form-group">
-                            <input type="submit" value="Login" className="btn btn-success"/>
+                            <input type="submit" value={this.props.auth.loading ? 'Logging you in' : 'Login'} className="btn btn-success"/>
                         </div>
                     </form>
                 </div>
@@ -55,4 +71,10 @@ class LoginForm extends Component {
 
 }
 
-export default withAlert()(connect(null, {})(LoginForm));
+const mapStateToProps = (state) => {
+    return {
+        auth : state.auth
+    }
+}
+
+export default withAlert()(connect(mapStateToProps, { 'loginUser' : loginUser })(LoginForm));

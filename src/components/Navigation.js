@@ -33,7 +33,7 @@ class Navigation extends Component {
             <ul className="navbar-nav ml-auto">
             {
                 this.props.loggedin ? <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">UserName</a>
+                <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{this.props.user.username}</a>
                 <div className="dropdown-menu">
                 <Link className="dropdown-item" to="#">Create Blog</Link>
                 <Link className="dropdown-item" href="#">Profile</Link>
