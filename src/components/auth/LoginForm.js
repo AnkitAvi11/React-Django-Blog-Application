@@ -43,7 +43,7 @@ class LoginForm extends Component {
 
     //  render function
     render () {
-        
+        //  redirects to the home page after the user is loggedin 
         if(this.props.auth.user!=null) {
             return <Redirect to="/" />
         }

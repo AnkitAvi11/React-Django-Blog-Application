@@ -12,6 +12,7 @@ class Login extends Component {
     }
 
     render () {
+        
         return (
             <div className="container">
                 <div className="card">
@@ -19,7 +20,7 @@ class Login extends Component {
                         <div className="row">
                             <div className="col-sm-6">
                                 <h3>Login User</h3>
-                                <LoginForm />
+                                <LoginForm history={this.props.history} />
                             </div>
 
                             <div className="col-sm-6">

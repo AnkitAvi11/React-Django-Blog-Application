@@ -51,7 +51,7 @@ export const loginUser = (username, password) => {
                 dispatch(loginError(data.message))
                 setTimeout(()=>{
                     dispatch(removeError())        
-                }, 1000)
+                }, 0)
             }else{
 
                 localStorage.setItem('user', JSON.stringify(data.user))
