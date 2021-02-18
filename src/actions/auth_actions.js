@@ -63,3 +63,46 @@ export const loginUser = (username, password) => {
         })
     }
 }
+
+//  signup process start
+const signup_start = () => {
+    return {
+        type : 'SIGNUP_START'
+    }
+}
+
+const signup_success = (user) => {
+    return {
+        type : 'SIGNUP_SUCCESS',
+        payload : user
+    }
+}
+
+const signup_error = (err) => {
+    return {
+        type : 'SIGNUP_ERROR',
+        payload : err
+    }
+}
+
+//  signup action for registeration of the users
+export const signupUserAction = (fname, username, email, password) => {
+    return async dispatch => {
+        await dispatch(signup_start());
+        let formData = new FormData()
+        formData.append('fname', fname)
+        formData.append('username', username)
+        formData.append('email', email)
+        formData.append('password', password)
+
+        fetch('http://127.0.0.1:8000/api/auth/signup/', {
+            method : 'POST',
+            body : formData,
+        }).then(res => res.json())
+        .then(data => {
+            console.log(data)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+}
