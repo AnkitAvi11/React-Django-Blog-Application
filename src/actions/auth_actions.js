@@ -127,3 +127,10 @@ export const signupUserAction = (fname, username, email, password) => {
         })
     }
 }
+
+
+export const logoutUser = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    window.location.reload()
+}

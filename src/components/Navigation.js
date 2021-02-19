@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+import { logoutUser } from "../actions/auth_actions";
 
 class Navigation extends Component {
 
     constructor (props) {
         super(props);
+    }
+
+    logoutuser = () => {
+        this.props.logoutUser()
     }
 
     render () {
@@ -40,7 +46,7 @@ class Navigation extends Component {
                 <Link className="dropdown-item" to="#">Settings</Link>
                 <Link className="dropdown-item" to="#">About us</Link>
                 <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">Logout</a>
+                <a className="dropdown-item" href="#" onClick={this.logoutuser}>Logout</a>
                 </div>
             </li> : <div>
                 <li className="nav-item">
@@ -57,4 +63,4 @@ class Navigation extends Component {
 
 }
 
-export default Navigation;
+export default connect(null, {logoutUser})(Navigation);
