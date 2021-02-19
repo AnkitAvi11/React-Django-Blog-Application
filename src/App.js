@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
+import LoggedinRoute from './components/LoggedinRoute';
 import Navigation from './components/Navigation';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -14,7 +15,7 @@ class App extends Component {
         <Switch>
           {/* Authentication routes */}
           <Route path="/" exact={true} component={()=><p>Home page</p>} />
-          <Route path="/auth" exact={true} component={Login} />
+          <LoggedinRoute path="/auth" exact={true} component={Login} loggedin={this.props.loggedin} />
 
           {/* Private routes that require users to be authenticated */}
           <PrivateRoute path="/dashboard" loggedin={false} component={Signup} />

@@ -58,8 +58,11 @@ export const loginUser = (username, password) => {
                 localStorage.setItem('token', data.token)
                 return dispatch(loginSuccess(data.user))
             }
-        }).catch(err => {
-            return dispatch(loginError(err))
+        }).catch(err => {   
+            dispatch(loginError("Some error has occurred"))
+            setTimeout(()=>{
+                dispatch(removeError())        
+            }, 0)
         })
     }
 }
@@ -85,6 +88,13 @@ const signup_error = (err) => {
     }
 }
 
+const removeuser = () => {
+    return {
+        type : 'REMOVE_USER'
+    }
+}
+
+
 //  signup action for registeration of the users
 export const signupUserAction = (fname, username, email, password) => {
     return async dispatch => {
@@ -101,6 +111,17 @@ export const signupUserAction = (fname, username, email, password) => {
         }).then(res => res.json())
         .then(data => {
             console.log(data)
+            if(data.message) {
+                dispatch(signup_error(data.message))
+                setTimeout(()=>{
+                    dispatch(removeError())        
+                }, 0)
+            }else{
+                dispatch(signup_success(data.user))
+                setTimeout(()=>{
+                    dispatch(removeuser())        
+                }, 0)
+            }
         }).catch(err => {
             console.log(err)
         })
