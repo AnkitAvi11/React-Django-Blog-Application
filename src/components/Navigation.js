@@ -14,6 +14,7 @@ class Navigation extends Component {
     }
 
     render () {
+        console.log(this.props.user)
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{marginBottom : "20px"}}>
         <div className="container">
@@ -37,6 +38,11 @@ class Navigation extends Component {
             </li>
             </ul>
             <ul className="navbar-nav ml-auto">
+                {
+                    this.props.user && this.props.user.is_staff ? <li className="nav-item">
+                        <NavLink to="/user_admin" className="nav-link">User admin</NavLink>
+                    </li> : ''
+                }
             {
                 this.props.loggedin ? <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{this.props.user.username}</a>
@@ -48,7 +54,7 @@ class Navigation extends Component {
                 <div className="dropdown-divider"></div>
                 <a className="dropdown-item" href="#" onClick={this.logoutuser}>Logout</a>
                 </div>
-            </li> : <div>
+            </li> : <div>              
                 <li className="nav-item">
                     <NavLink to="/auth" className="nav-link">Login or Signup</NavLink>
                 </li>

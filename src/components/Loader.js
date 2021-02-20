@@ -9,7 +9,7 @@ const loader = (props) => {
             <div className="spinner-grow text-info" role="status">
             <span className="sr-only">Loading...</span>
             </div>
-            <div className="spinner-grow text-secondary" role="status">
+            <div className="spinner-grow text-danger" role="status">
             <span className="sr-only">Loading...</span>
             </div>
             <h4 style={{marginTop : "30px"}}>Loading ...</h4>
