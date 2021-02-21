@@ -47,6 +47,9 @@ class LoginForm extends Component {
         if(this.props.auth.user!=null) {
             return <Redirect to="/" />
         }
+        if(this.props.auth.user!==null){
+            this.props.alert.show('User successfully logged in.', {type : 'success'})
+        }
 
         return (
             <div className="card" style={{borderRadius:"0"}}>

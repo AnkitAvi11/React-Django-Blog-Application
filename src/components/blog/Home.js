@@ -23,16 +23,15 @@ class Home extends Component {
     }
     
     componentDidMount = () => {
-        setTimeout(() => {
-            this.setState({
-                loading : false
-            })
-        }, 1000);
+        fetch('http://127.0.0.1:8000/api/blog/all/')
+        .then(res => res.json())
+        .then(data => {
+            this.setState({blogs : data, loading:false})
+        })
+        .catch(err => console.log(err))
     }
 
     render () {
-        
-        const markdown = "### How to use this platform \n Here is some JavaScript code to understand \n ~~~js \n console.log('Hello world');\n function myfunction () => {}";
 
         return (
             <div className="container">
@@ -44,8 +43,8 @@ class Home extends Component {
                 {
                     this.state.loading ? <Loader /> : null
                 }
-                <ReactMarkdownWithHtml plugins={[gfm]} renderers={renderers}>
-                    {markdown}
+                <ReactMarkdownWithHtml plugins={[gfm]} renderers={renderers} escapeHtml={false} >
+                    {this.state.blogs[0] ? this.state.blogs[0].body : null}
                 </ReactMarkdownWithHtml>
             </div>
         )
