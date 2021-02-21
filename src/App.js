@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
+import CreateBlog from './components/blog/CreateBlog';
 import Home from './components/blog/Home';
 import LoggedinRoute from './components/LoggedinRoute';
 import Navigation from './components/Navigation';
@@ -19,7 +20,8 @@ class App extends Component {
           <LoggedinRoute path="/auth" exact={true} component={Login} loggedin={this.props.loggedin} />
 
           {/* Private routes that require users to be authenticated */}
-          <PrivateRoute path="/dashboard" loggedin={false} component={Signup} />
+          <PrivateRoute path="/dashboard" loggedin={this.props.loggedin} component={Signup} />
+          <PrivateRoute path="/blog/create" loggedin={this.props.loggedin} component={CreateBlog} />
         </Switch>
       </BrowserRouter>
     )
