@@ -49,9 +49,7 @@ export const loginUser = (username, password) => {
             console.log(data)
             if(data.message) {
                 dispatch(loginError(data.message))
-                setTimeout(()=>{
-                    dispatch(removeError())        
-                }, 0)
+                
             }else{
 
                 localStorage.setItem('user', JSON.stringify(data.user))
@@ -60,9 +58,7 @@ export const loginUser = (username, password) => {
             }
         }).catch(err => {   
             dispatch(loginError("Some error has occurred"))
-            setTimeout(()=>{
-                dispatch(removeError())        
-            }, 0)
+            
         })
     }
 }

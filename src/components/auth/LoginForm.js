@@ -26,9 +26,14 @@ class LoginForm extends Component {
         this.props.loginUser(this.state.username, this.state.password)
     }
 
+    componentDidMount = () => {
+        console.log('Component was mounted')
+    }
+
     componentDidUpdate = () => {
         if (this.props.auth.error) {
             this.props.alert.show(this.props.auth.error, {type : 'error'})
+            this.props.auth.error = null;
         }else if(this.props.auth.user!==null){
             this.props.alert.show('User successfully logged in.', {type : 'success'})
         }

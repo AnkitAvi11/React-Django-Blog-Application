@@ -27,6 +27,7 @@ class Home extends Component {
         fetch('http://127.0.0.1:8000/api/blog/all/')
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             setTimeout(() => {
                 this.setState({blogs : data, loading:false})
             }, 500);
@@ -40,7 +41,7 @@ class Home extends Component {
         if (this.state.blogs.length>0){
             blogs = this.state.blogs.map(blog => {
                 return (
-                    <div className="col-sm-4">
+                    <div className="col-sm-4" style={{marginBottom:"10px", minHeight:"200px"}}>
                         <div className="card">
                             <div className="card-body">
                                 
@@ -52,6 +53,7 @@ class Home extends Component {
 
                                 <p>{blog.description}</p>
                                 <p>{new Date(blog.published_on).toDateString()}</p>
+                                <p>{new Date().setDate(new Date(blog.published_on).getDate() - 3).toLocaleString()}</p>
                             </div>
                         </div>
                     </div>
@@ -61,6 +63,7 @@ class Home extends Component {
 
         return (
             <div className="container">
+                <h5>Featured blogs</h5>
                 {
                     /** When no blogs found */
                     !this.state.loading && this.state.blogs.length <= 0 ? <p style={{textAlign:"center"}}>No blogs found</p> : null
