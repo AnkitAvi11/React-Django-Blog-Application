@@ -8,8 +8,14 @@ import Home from './components/blog/Home';
 import LoggedinRoute from './components/LoggedinRoute';
 import Navigation from './components/Navigation';
 import PrivateRoute from './components/PrivateRoute';
+import { authStateValidation } from "./actions/auth_actions";
 
 class App extends Component {
+
+  componentDidMount = () => {
+    this.props.authStateValidation()
+  }
+
   render () {
     return (
       <BrowserRouter>
@@ -29,11 +35,14 @@ class App extends Component {
 }
 
 //  to maintain the authentication state of the application
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
+  console.log(state.auth.user)
   return {
-    loggedin : localStorage.getItem('token') != null ? true : false,
-    user : JSON.parse(localStorage.getItem('user'))
+    loggedin : state.auth.user ? true : false,
+    user : state.auth.user ? state.auth.user : ''
   }
 }
 
-export default connect(mapStateToProps,{})(App);
+export default connect(mapStateToProps,{
+  authStateValidation
+})(App);

@@ -130,3 +130,32 @@ export const logoutUser = () => {
     localStorage.removeItem('user')
     window.location.reload()
 }
+
+
+export const authStateValidation = () => {
+    return async dispatch => {
+
+        let token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+
+        fetch('http://127.0.0.1:8000/api/auth/validate/', {
+            headers : {
+                'Authorization' : 'Token ' + token
+            }
+        }).then(res => res.json())
+        .then(data => {
+            if(data.user) {
+                localStorage.setItem('user', JSON.stringify(data.user))
+                localStorage.setItem('token', token)
+                return dispatch(loginSuccess(data.user))
+            }else{
+                localStorage.removeItem('token')
+                localStorage.removeItem('user')
+
+            }
+        }).catch(err => {
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
+        })
+        
+    }
+}

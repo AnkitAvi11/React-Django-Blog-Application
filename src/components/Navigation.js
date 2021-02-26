@@ -44,10 +44,7 @@ class Navigation extends Component {
                 }
             {
                 this.props.loggedin ? <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{this.props.user.username}
-                <div style={{height:"35px", width:"35px", background:`url(http://127.0.0.1:8000${this.props.user.userprofile.profile_pic})`, display:"inline-block", marginLeft:"10px", top:"10px", position:"relative", borderRadius:"50%",backgroundPosition:"center", backgroundSize:"cover" }}>
-                    
-                </div>
+                <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style={{fontWeight:"bolder"}}>{this.props.user.username}
                 </a>
                 <div className="dropdown-menu">
                 <Link className="dropdown-item" to="/blog/create">Create Blog</Link>
