@@ -1,8 +1,8 @@
 const init_state = {
     loading : false,
     error : null,
-    status : true,
-    blog : null
+    blog : null,
+    stat : false
 }
 
 
@@ -18,17 +18,18 @@ const blogReducer = (state = init_state, action) => {
             ...state,
             loading : false,
             error : null,
-            status : true
+            stat : true
         }
 
         case 'SAVE_ERROR' : return {
             ...state,
             loading : false,
-            error : action.payload,
-            status : false
+            error : "Some errors have occurred",
         }
         
         default : return state
         
     }
 }
+
+export {blogReducer}

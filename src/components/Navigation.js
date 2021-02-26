@@ -14,7 +14,6 @@ class Navigation extends Component {
     }
 
     render () {
-        console.log(this.props.user)
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{marginBottom : "20px"}}>
         <div className="container">
@@ -45,10 +44,14 @@ class Navigation extends Component {
                 }
             {
                 this.props.loggedin ? <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{this.props.user.username}</a>
+                <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{this.props.user.username}
+                <div style={{height:"35px", width:"35px", background:`url(http://127.0.0.1:8000${this.props.user.userprofile.profile_pic})`, display:"inline-block", marginLeft:"10px", top:"10px", position:"relative", borderRadius:"50%",backgroundPosition:"center", backgroundSize:"cover" }}>
+                    
+                </div>
+                </a>
                 <div className="dropdown-menu">
                 <Link className="dropdown-item" to="/blog/create">Create Blog</Link>
-                <Link className="dropdown-item" href="#">Profile</Link>
+                <Link className="dropdown-item" to="#">Profile</Link>
                 <Link className="dropdown-item" to="#">Settings</Link>
                 <Link className="dropdown-item" to="#">About us</Link>
                 <div className="dropdown-divider"></div>

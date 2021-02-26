@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { withAlert } from 'react-alert';
 
 import ReactMarkdownWithHtml  from "react-markdown";
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import gfm from 'remark-gfm';
+import { publishBlogAction } from "../../actions/blog_actions";
 
 class CreateBlog extends Component {
     constructor(props) {
@@ -9,8 +13,8 @@ class CreateBlog extends Component {
         this.state = {
             title : '',
             description : '',
-            content : '',
-            cover : null
+            body : '',
+            cover_image : null
         }
     }
 
@@ -25,19 +29,43 @@ class CreateBlog extends Component {
     //  handles the file change event
     onFileSelect = (e) => {
         this.setState({
-            cover : e.target.files[0] ? e.target.files[0] : null
+            cover_image : e.target.files[0] ? e.target.files[0] : null
         })
+    }
+
+    //  function to handle the submit action
+    submitForm = (e) => {
+        e.preventDefault();
+        if (this.state.body === '' || this.state.title === '') {
+            return this.props.alert.show('Fill up the form correctly', {type:'error'})
+        }
+        this.props.publishBlogAction(this.state);
+    }
+
+    //  component did update
+    componentDidMount = () => {
+        if(this.props.blog.error!==null) {
+            this.props.alert.show('Some errors occured', {type:'error'})
+            this.props.blog.error = null;   
+        }
+        if(this.props.blog.stat){
+            this.props.blog.stat = false;
+        }
     }
 
     //  renders the form of the creating blog along with the preview
     render () {
+        if(this.props.blog.stat){
+            this.props.alert.show('Blog publisehd', {type:'success'})
+            return <Redirect to="/" />            
+        }
         return (
             <div className="container">
                 
                 <div className="row">
                     <div className="col-sm-6">
                     <h4>Create blog</h4>
-                        <form action="" method="post">
+                        <form action="" method="post" onSubmit={this.submitForm} encType="multipart/form-data">
                             <div className="form-group">
                                 <label htmlFor="title">Title for the blog</  label>
                                 <input type="text" name="title" id="title" className="form-control" placeholder="Enter a title for the blog" value={this.state.title} onChange={this.handleInputChange} />
@@ -51,14 +79,14 @@ class CreateBlog extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="cover">Choose a cover pic</label>
-                                <input type="file" name="cover" id="cover" className="form-control btn" onChange={this.onFileSelect} />
+                                <input type="file" name="cover_image" id="cover" className="form-control btn" onChange={this.onFileSelect} />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="content">Type your content here</label>
-                                <textarea name="content" id="content" cols="30" rows="10" className="form-control" onChange={this.handleInputChange} value={this.state.content}></textarea>
+                                <textarea name="body" id="content" cols="30" rows="10" className="form-control" onChange={this.handleInputChange} value={this.state.content}></textarea>
                             </div>
                             <div className="form-group">
-                                <input type="submit" value="Publish" className="btn btn-info" />
+                                <input type="submit" value={this.props.blog.loading ? 'Publishing ... ' : 'Publish blog'} className="btn btn-info" />
                             </div>
                         </form>
                     </div>
@@ -68,7 +96,7 @@ class CreateBlog extends Component {
                         <h4>Preview</h4>
                         <hr/>
                         <ReactMarkdownWithHtml 
-                        children={this.state.content}
+                        children={this.state.body}
                         plugins={[gfm]}
                         allowDangerousHtml={true}
                         />
@@ -80,10 +108,12 @@ class CreateBlog extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+    console.log(state.blog_stat)
     return {
-
+        blog : state.blog_stat
     }
 }
 
-export default CreateBlog;
+export default withAlert()(connect(mapStateToProps, {
+    publishBlogAction
+}) (CreateBlog));

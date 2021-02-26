@@ -53,7 +53,7 @@ class Home extends Component {
 
                                 <p>{blog.description}</p>
                                 <p>{new Date(blog.published_on).toDateString()}</p>
-                                <p>{new Date().setDate(new Date(blog.published_on).getDate() - 3).toLocaleString()}</p>
+                                
                             </div>
                         </div>
                     </div>
