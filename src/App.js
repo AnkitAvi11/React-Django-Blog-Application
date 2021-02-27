@@ -9,6 +9,7 @@ import LoggedinRoute from './components/LoggedinRoute';
 import Navigation from './components/Navigation';
 import PrivateRoute from './components/PrivateRoute';
 import { authStateValidation } from "./actions/auth_actions";
+import BlogRoute from './components/blog/BlogRoute';
 
 class App extends Component {
 
@@ -27,7 +28,9 @@ class App extends Component {
 
           {/* Private routes that require users to be authenticated */}
           <PrivateRoute path="/dashboard" loggedin={this.props.loggedin} component={Signup} />
-          <PrivateRoute path="/blog/create" loggedin={this.props.loggedin} component={CreateBlog} />
+
+          <Route path="/blog" loggedin={this.props.loggedin} render={props => <BlogRoute loggedin={this.props.loggedin} />} />
+
         </Switch>
       </BrowserRouter>
     )
