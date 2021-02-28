@@ -36,6 +36,10 @@ class Comments extends Component {
             return <p>{this.props.blog_id}</p>
         }
 
+        if (this.state.comments.length <= 0 ){
+            return <p style={{textAlign:"center"}}><small>Be first one to comment.</small></p>
+        }
+
         const comments = this.state.comments.map(comment => {
             return <div className="card" key={comment.id} style={{marginBottom:"10px"}}>
                 <div className="card-body">
