@@ -60,11 +60,11 @@ class SingleBlog extends Component {
         }
 
         return (
-            <div className="container">
+            <div className="container-fluid" style={{padding:"0px 80px"}}>
                 <div className="row">
                     <div className="col-sm-9">
-                        <div className="card">
-                            <div style={{background : `url(http://localhost:8000${this.state.blog.cover_image})` , width:"100%", height:"350px", backgroundSize:"cover", backgroundPosition:"center", marginBottom:"20px", boxShadow:"1px 1px 10px grey"}}>
+                        <div className="card" style={{border:"none"}}>
+                            <div style={{background : `url(http://localhost:8000${this.state.blog.cover_image})` , width:"100%", height:"400px", backgroundSize:"cover", backgroundPosition:"center", marginBottom:"20px", boxShadow:"1px 1px 10px grey"}}>
                                 </div>
                             <div className="card-body" style={{overflow:"hidden"}}>
                                 
@@ -86,6 +86,7 @@ class SingleBlog extends Component {
                         <div style={{position:"sticky", top:"20px"}}>
                         <BlogUser 
                         user_id = {this.state.blog.user}
+                        blog_id = {this.state.blog.id}
                         />
                         </div>
                     </div>

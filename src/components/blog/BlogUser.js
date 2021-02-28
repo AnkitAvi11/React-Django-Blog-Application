@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../Loader';
+import Comments from './Comment';
 
 class BlogUser extends Component {
 
@@ -42,7 +43,10 @@ class BlogUser extends Component {
                     </div>
                 </div>
                 <br/>
-                <p>More articles from <b>{this.state.user.username}</b></p>
+                <p><b>Comments</b></p>
+                <Comments
+                blog_id={this.props.blog_id}
+                />
             </div>
         )
     }
