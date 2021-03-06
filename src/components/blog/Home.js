@@ -15,6 +15,7 @@ const renderers = {
 
 class Home extends Component {
 
+    //  constructor of the class component
     constructor (props) {
         super(props)
         this.state = {
@@ -23,11 +24,11 @@ class Home extends Component {
         }
     }
     
+    //  component did mount life cycle
     componentDidMount = () => {
         fetch('http://127.0.0.1:8000/api/blog/all/')
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             setTimeout(() => {
                 this.setState({blogs : data, loading:false})
             }, 500);
@@ -35,6 +36,7 @@ class Home extends Component {
         .catch(err => console.log(err))
     }
 
+    //  render function of the class
     render () {
 
         let blogs = null;

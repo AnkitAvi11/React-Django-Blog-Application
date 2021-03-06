@@ -28,15 +28,16 @@ class Comments extends Component {
     }
 
     componentDidMount () {
-        this.loadComments()
+        this.loadComments();
     }
 
     render () {
+        
         if (this.state.loading) {
-            return <p>{this.props.blog_id}</p>
+            return <Loader />
         }
 
-        if (this.state.comments.length <= 0 ){
+        if (this.state.comments.length <= 0 ){  
             return <p style={{textAlign:"center"}}><small>Be first one to comment.</small></p>
         }
 
