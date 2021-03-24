@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../Loader';
+import CreateComment from './CreateComment';
 
 
 class Comments extends Component {
@@ -38,7 +39,10 @@ class Comments extends Component {
         }
 
         if (this.state.comments.length <= 0 ){  
-            return <p style={{textAlign:"center"}}><small>Be first one to comment.</small></p>
+            return <div>
+                <CreateComment />
+                <p style={{textAlign:"center"}}><small>Be first one to comment.</small></p>
+            </div>
         }
 
         const comments = this.state.comments.map(comment => {
@@ -57,6 +61,7 @@ class Comments extends Component {
 
         return (
             <div>
+                <CreateComment />
                 {comments}
             </div>
         )
