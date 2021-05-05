@@ -39,14 +39,10 @@ class BlogUser extends Component {
                     <img src={`http://localhost:8000${this.state.user.userprofile.profile_pic}`} alt="" style={{width:"100%"}} />
                     <div className="card-body">
                         <h3>{this.state.user.first_name} {this.state.user.last_name}</h3>
-                        <h5><Link to={`/user/${this.state.user.username}`}>{this.state.user.username}</Link></h5>
+                        <h5>{this.state.user.username}</h5>
                     </div>
                 </div>
-                <br/>
-                <p><b>Comments</b></p>
-                <Comments
-                blog_id={this.props.blog_id}
-                />
+                <br/>                
             </div>
         )
     }

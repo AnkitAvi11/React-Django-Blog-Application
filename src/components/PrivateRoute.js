@@ -15,3 +15,4 @@ const PrivateRoute = ({component : Component, loggedin, ...rest}) => {
 }
 
 export default PrivateRoute;
+

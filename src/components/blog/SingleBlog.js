@@ -56,7 +56,7 @@ class SingleBlog extends Component {
         }
 
         if (this.state.error) {
-            return <h1 className="container">Blog was not found</h1>
+            return <h1 className="container" style={{textAlign:"center"}}>Blog was not found</h1>
         }
 
         return (
@@ -64,8 +64,10 @@ class SingleBlog extends Component {
                 <div className="row">
                     <div className="col-sm-9">
                         <div className="card" style={{border:"none"}}>
-                            <div style={{background : `url(http://localhost:8000${this.state.blog.cover_image})` , width:"100%", height:"400px", backgroundSize:"cover", backgroundPosition:"center", marginBottom:"20px", boxShadow:"1px 1px 10px grey"}}>
-                                </div>
+                            {
+                                this.state.blog.cover_image ? <div style={{background : `url(http://localhost:8000${this.state.blog.cover_image})` , width:"100%", height:"400px", backgroundSize:"cover", backgroundPosition:"center", marginBottom:"20px", boxShadow:"1px 1px 10px grey"}}> </div> : null
+                            }
+                                
                             <div className="card-body" style={{overflow:"hidden"}}>
                                 
                                 <div style={{textAlign:"center", marginBottom:"50px"}}>

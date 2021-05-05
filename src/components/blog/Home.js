@@ -44,7 +44,7 @@ class Home extends Component {
             blogs = this.state.blogs.map(blog => {
                 return (
                     <div className="col-sm-4" style={{marginBottom:"10px", minHeight:"200px"}} key={blog.id} >
-                        <div className="card" style={{border:"none"}}>
+                        <div className="card" style={{border:"1px solid lightgrey"}}>
                         {blog.cover_image ? <div style={{height:"200px", width:"100%", background:`url(http://127.0.0.1:8000${blog.cover_image}/)`, backgroundPosition:"center", backgroundSize : "cover"}}>
 
                         </div> : null}
@@ -65,7 +65,7 @@ class Home extends Component {
 
         return (
             <div className="container">
-                <h5>Featured blogs</h5>
+                <h5>Latest blogs</h5>
                 {
                     /** When no blogs found */
                     !this.state.loading && this.state.blogs.length <= 0 ? <p style={{textAlign:"center"}}>No blogs found</p> : null

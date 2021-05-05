@@ -29,28 +29,15 @@ class Navigation extends Component {
                 <span className="sr-only">(current)</span>
                 </NavLink>
             </li>
-            <li className="nav-item">
-                <NavLink className="nav-link" to="/blogs">Blogs</NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink className="nav-link" to="/search">Search</NavLink>
-            </li>
+            
             </ul>
             <ul className="navbar-nav ml-auto">
-                {
-                    this.props.user && this.props.user.is_staff ? <li className="nav-item">
-                        <NavLink to="/user_admin" className="nav-link">User admin</NavLink>
-                    </li> : ''
-                }
             {
                 this.props.loggedin ? <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style={{fontWeight:"bolder"}}>{this.props.user.username}
                 </a>
                 <div className="dropdown-menu">
                 <Link className="dropdown-item" to="/blog/create">Create Blog</Link>
-                <Link className="dropdown-item" to="#">Profile</Link>
-                <Link className="dropdown-item" to="#">Settings</Link>
-                <Link className="dropdown-item" to="#">About us</Link>
                 <div className="dropdown-divider"></div>
                 <a className="dropdown-item" href="#" onClick={this.logoutuser}>Logout</a>
                 </div>
